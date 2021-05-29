@@ -1,13 +1,14 @@
 {
   "name": "ember-breadcrumbs",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.1.0",
+  "description": "Manage breadcrumbs for an ember application.",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "breadcrumbs"
   ],
   "repository": "",
   "license": "MIT",
-  "author": "",
+  "author": "Brian Gantzler",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -73,7 +74,7 @@
     "qunit-dom": "^1.6.0"
   },
   "engines": {
-    "node": "10.* || >= 12"
+    "node": ">= 12"
   },
   "ember": {
     "edition": "octane"
