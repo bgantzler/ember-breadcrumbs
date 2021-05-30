@@ -21,9 +21,9 @@ Router.map(function () {
       });
     });
   });
-  this.route('params', function() {
-    this.route('foo', function() {
-      this.route('bar', function() {
+  this.route('params', function () {
+    this.route('foo', { path: ':id' }, function () {
+      this.route('bar', { path: ':id' }, function () {
         this.route('baz');
       });
     });

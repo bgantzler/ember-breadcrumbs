@@ -1,2 +1,26 @@
 {{page-title "Params"}}
+<nav aria-label="primary">
+  <ol>
+    <li>
+      <LinkTo @route="params" data-test-home>Home</LinkTo>
+    </li>
+    <li>
+      <LinkTo @route="params.foo" @model={{this.foo}} data-test-foo>Foo</LinkTo>
+    </li>
+    <li>
+      <LinkTo
+        @route="params.foo.bar"
+        @models={{array this.foo this.bar}}
+        data-test-bar
+      >Bar</LinkTo>
+    </li>
+    <li>
+      <LinkTo
+        @route="params.foo.bar.baz"
+        @models={{array this.foo this.bar}}
+        data-test-baz
+      >Baz</LinkTo>
+    </li>
+  </ol>
+</nav>
 {{outlet}}
