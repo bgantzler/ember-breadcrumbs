@@ -34,7 +34,6 @@ export default class BreadcrumbsMetaService extends Service {
     //   });
     //   return params;
     // };
-    debugger;
 
     let crumbs = parents(this.router.currentRoute)
       .filter((routeInfo) => {
