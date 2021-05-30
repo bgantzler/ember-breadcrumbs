@@ -1,0 +1,18 @@
+{{page-title "Title"}}
+<nav aria-label="primary">
+  <ol>
+    <li>
+      <LinkTo @route="title">Home</LinkTo>
+    </li>
+    <li>
+      <LinkTo @route="title.foo">Foo</LinkTo>
+    </li>
+    <li>
+      <LinkTo @route="title.foo.bar">Bar</LinkTo>
+    </li>
+    <li>
+      <LinkTo @route="title.foo.bar.baz">Baz</LinkTo>
+    </li>
+  </ol>
+</nav>
+{{outlet}}

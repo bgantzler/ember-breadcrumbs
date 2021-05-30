@@ -1,0 +1,19 @@
+{{page-title "NoTitle"}}
+<nav aria-label="primary">
+  <ol>
+    <li>
+      <LinkTo @route="no-title" data-test-home>Home</LinkTo>
+    </li>
+    <li>
+      <LinkTo @route="no-title.foo" data-test-foo>Foo</LinkTo>
+    </li>
+    <li>
+      <LinkTo @route="no-title.foo.bar" data-test-bar>Bar</LinkTo>
+    </li>
+    <li>
+      <LinkTo @route="no-title.foo.bar.baz" data-test-baz>Baz</LinkTo>
+    </li>
+  </ol>
+</nav>
+
+{{outlet}}

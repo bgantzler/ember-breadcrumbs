@@ -1,5 +1,33 @@
 {{page-title "Dummy"}}
-
-<h2 id="title">Welcome to Ember</h2>
-
+<nav aria-label="primary">
+  <ol>
+    <li>
+      <LinkTo @route="no-title" data-test-no-title>No Title</LinkTo>
+    </li>
+    <li>
+      <LinkTo @route="title" data-test-title>With Title</LinkTo>
+    </li>
+  </ol>
+</nav>
 {{outlet}}
+
+<nav aria-label="breadcrumbs">
+  <EmberBreadcrumbs@breadcrumbs as |breadcrumbs|>
+  <ol>
+    {{#each breadcrumbs.crumbs as |breadcrumb|}}
+      <li>
+        {{#if (has-next breadcrumb breadcrumbs.crumbs)}}
+          <LinkTo
+                  @route={{breadcrumb.routeName}}
+                  aria-current={{if (not (has-next breadcrumb breadcrumbs.crumbs)) "page"}}
+          >
+            {{breadcrumb.title}}
+          </LinkTo>
+        {{else}}
+          {{breadcrumb.title}}
+        {{/if}}
+      </li>
+    {{/each}}
+  </ol>
+  </EmberBreadcrumbs@breadcrumbs>
+</nav>
