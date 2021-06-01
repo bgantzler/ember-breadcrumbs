@@ -1,7 +1,7 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { cached, tracked } from '@glimmer/tracking';
-console.log(cached);
+import { isPresent } from '@ember/utils';
 
 class Breadcrumb {
   @tracked
@@ -22,25 +22,29 @@ class Breadcrumb {
 export default class BreadcrumbsMetaService extends Service {
   @service() router;
 
-  // @cached
+  @cached
   get crumbs() {
     let parents = (route) => {
       return route ? [...parents(route.parent), route] : [];
     };
-    // let params = (routes, propName) => {
+    // let params = (params, routeInfo, propName) => {
     //   let params = [];
     //   routes.forEach((route) => {
     //     params.push(route[propName]);
     //   });
     //   return params;
     // };
-debugger;
+
+    let params = [];
     let crumbs = parents(this.router.currentRoute)
       .filter((routeInfo) => {
         return routeInfo.metadata?.breadcrumb;
       })
       .map((routeInfo) => {
         let breadcrumb = new Breadcrumb();
+        if (isPresent(routeInfo.paramNames)) {
+          params.push(routeInfo.attributes);
+        }
         Object.assign(
           breadcrumb,
           {
@@ -50,10 +54,10 @@ debugger;
           {
             routeName: routeInfo.name,
             routeLocalName: routeInfo.localName,
-            allParams: [], //params(routeInfo, 'params'),
+            allParams: [...params], //params(routeInfo, 'params'),
             allQueryParams: [], // params(routeInfo, 'queryParams'),
             routeParams: routeInfo.params,
-            routeQueryParams: routeInfo.params,
+            routeQueryParams: routeInfo.queryParams,
           }
         );
         return breadcrumb;

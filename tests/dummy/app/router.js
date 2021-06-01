@@ -22,8 +22,8 @@ Router.map(function () {
     });
   });
   this.route('params', function () {
-    this.route('foo', { path: ':id' }, function () {
-      this.route('bar', { path: ':id' }, function () {
+    this.route('foo', { path: 'foo/:foo_id' }, function () {
+      this.route('bar', { path: 'bar/:bar_id' }, function () {
         this.route('baz');
       });
     });

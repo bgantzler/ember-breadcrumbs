@@ -7,27 +7,46 @@
     <li>
       <LinkTo @route="title" data-test-title>With Title</LinkTo>
     </li>
+    <li>
+      <LinkTo @route="params" data-test-title>Models and Queries</LinkTo>
+    </li>
   </ol>
 </nav>
 {{outlet}}
 
 <nav aria-label="breadcrumbs">
   <EmberBreadcrumbs@breadcrumbs as |breadcrumbs|>
-  <ol>
-    {{#each breadcrumbs.crumbs as |breadcrumb|}}
-      <li>
-        {{#if (has-next breadcrumb breadcrumbs.crumbs)}}
-          <LinkTo
-                  @route={{breadcrumb.routeName}}
-                  aria-current={{if (not (has-next breadcrumb breadcrumbs.crumbs)) "page"}}
-          >
+    <ol>
+      {{#each breadcrumbs.crumbs as |breadcrumb|}}
+        <li>
+          {{#if (has-next breadcrumb breadcrumbs.crumbs)}}
+            {{#if breadcrumb.allParams.length}}
+              <LinkTo
+                @route={{breadcrumb.routeName}}
+                @models={{breadcrumb.allParams}}
+                aria-current={{if
+                  (not (has-next breadcrumb breadcrumbs.crumbs))
+                  "page"
+                }}
+              >
+                {{breadcrumb.title}}
+              </LinkTo>
+            {{else}}
+              <LinkTo
+                @route={{breadcrumb.routeName}}
+                aria-current={{if
+                  (not (has-next breadcrumb breadcrumbs.crumbs))
+                  "page"
+                }}
+              >
+                {{breadcrumb.title}}
+              </LinkTo>
+            {{/if}}
+          {{else}}
             {{breadcrumb.title}}
-          </LinkTo>
-        {{else}}
-          {{breadcrumb.title}}
-        {{/if}}
-      </li>
-    {{/each}}
-  </ol>
+          {{/if}}
+        </li>
+      {{/each}}
+    </ol>
   </EmberBreadcrumbs@breadcrumbs>
 </nav>

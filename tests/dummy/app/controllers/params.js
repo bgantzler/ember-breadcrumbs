@@ -1,17 +1,14 @@
 import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
 
 export default class ParamsController extends Controller {
+  @service store;
+
   get foo() {
-    return {
-      id: 'f1',
-      name: 'foo name',
-    };
+    return this.store.peekRecord('record', 'f1');
   }
 
   get bar() {
-    return {
-      id: 'b1',
-      name: 'bar name',
-    };
+    return this.store.peekRecord('record', 'b1');
   }
 }

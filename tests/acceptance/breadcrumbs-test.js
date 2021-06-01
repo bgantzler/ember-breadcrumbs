@@ -74,7 +74,7 @@ module('Acceptance | breadcrumbs', function (hooks) {
       await visit('/params');
       await page.baz.click();
       let crumbs = this.service.crumbs;
-      debugger;
+
       assert.equal(crumbs.length, 3, 'baz length');
       assert.equal(crumbs[2].title, 'baz', 'title for baz');
     });
