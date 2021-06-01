@@ -20,28 +20,16 @@
       {{#each breadcrumbs.crumbs as |breadcrumb|}}
         <li>
           {{#if (has-next breadcrumb breadcrumbs.crumbs)}}
-            {{#if breadcrumb.allParams.length}}
-              <LinkTo
-                @route={{breadcrumb.routeName}}
-                @models={{breadcrumb.allParams}}
-                aria-current={{if
-                  (not (has-next breadcrumb breadcrumbs.crumbs))
-                  "page"
-                }}
-              >
-                {{breadcrumb.title}}
-              </LinkTo>
-            {{else}}
-              <LinkTo
-                @route={{breadcrumb.routeName}}
-                aria-current={{if
-                  (not (has-next breadcrumb breadcrumbs.crumbs))
-                  "page"
-                }}
-              >
-                {{breadcrumb.title}}
-              </LinkTo>
-            {{/if}}
+            <LinkTo
+              @route={{breadcrumb.routeName}}
+              @models={{breadcrumb.allParams}}
+              aria-current={{if
+                (not (has-next breadcrumb breadcrumbs.crumbs))
+                "page"
+              }}
+            >
+              {{breadcrumb.title}}
+            </LinkTo>
           {{else}}
             {{breadcrumb.title}}
           {{/if}}
